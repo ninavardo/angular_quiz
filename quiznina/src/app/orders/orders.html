@@ -1,0 +1,50 @@
+<div class="page">
+  <h1>Orders</h1>
+
+  <div class="table-wrap" *ngIf="orders.length > 0">
+    <table>
+      <thead>
+        <tr>
+          <th>Team member</th>
+          <th>Loading</th>
+          <th>Billable</th>
+          <th>Efficiency %</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders">
+          <td>
+            <div class="member">
+              <div class="avatar" [style.background-color]="order.color">
+                {{ order.initial }}
+              </div>
+              <span>{{ order.name }}</span>
+            </div>
+          </td>
+          <td>
+            <span *ngIf="order.status == 'High'" class="status high">
+              <span class="dot"></span>
+              High
+            </span>
+            <span *ngIf="order.status == 'Medium'" class="status medium">
+              <span class="dot"></span>
+              Medium
+            </span>
+            <span *ngIf="order.status == 'Low'" class="status low">
+              <span class="dot"></span>
+              Low
+            </span>
+          </td>
+          <td class="muted">{{ order.billable }}</td>
+          <td class="muted">{{ order.efficiency }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="footer" *ngIf="orders.length > 0">
+    Showing {{ orders.length }} items out of {{ total }} results found
+  </p>
+
+  <p class="footer" *ngIf="orders.length == 0">No orders found</p>
+</div>
